@@ -1,0 +1,1119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>College Math Club - Home</title>
+    <meta name="description" content="Welcome to the College Math Club - Explore the world of mathematics with us!">
+    <meta property="og:title" content="College Math Club">
+    <meta property="og:description" content="Join our community of math enthusiasts and explore the fascinating world of numbers and equations.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://collegemathclub.com">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    
+    
+    
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+    <style>
+        /* Reset and base styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #2c0e37, #1a0b2e, #0d0628);
+            color: #ffffff;
+            line-height: 1.6;
+        }
+
+        a {
+            color: #ffffff;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        a:hover {
+            color: #ff00ff;
+        }
+
+        /* Header and Navigation */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        header.scrolled {
+            background-color: rgba(44, 14, 55, 0.8);
+            backdrop-filter: blur(6px);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        #main-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 5%;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            text-shadow: 0 0 10px rgba(255, 0, 255, 0.7);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-left: 2rem;
+        }
+
+        .nav-links a {
+            position: relative;
+            padding: 0.5rem 0;
+            animation:event-card neon-glow animate__animated animate__fadeInLeft;
+        }
+
+        .nav-links a::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: #ff00ff;
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .nav-links a:hover::before,
+        .nav-links a.active::before {
+            transform: scaleX(1);
+        }
+
+        #menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            width: 30px;
+            height: 30px;
+            position: relative;
+        }
+
+        #menu-toggle span {
+            display: block;
+            position: absolute;
+            height: 3px;
+            width: 100%;
+            background: #ffffff;
+            border-radius: 3px;
+            opacity: 1;
+            left: 0;
+            transform: rotate(0deg);
+            transition: .25s ease-in-out;
+        }
+
+        #menu-toggle span:nth-child(1) {
+            top: 0px;
+        }
+
+        #menu-toggle span:nth-child(2),
+        #menu-toggle span:nth-child(3) {
+            top: 10px;
+        }
+
+        #menu-toggle span:nth-child(4) {
+            top: 20px;
+        }
+
+        #menu-toggle.open span:nth-child(1) {
+            top: 10px;
+            width: 0%;
+            left: 50%;
+        }
+
+        #menu-toggle.open span:nth-child(2) {
+            transform: rotate(45deg);
+        }
+
+        #menu-toggle.open span:nth-child(3) {
+            transform: rotate(-45deg);
+        }
+
+        #menu-toggle.open span:nth-child(4) {
+            top: 10px;
+            width: 0%;
+            left: 50%;
+        }
+
+        /* Main content */
+        main {
+            padding-top: 80px;
+        }
+
+        section {
+            padding: 4rem 5%;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+
+        section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        h1, h2, h3 {
+            margin-bottom: 1rem;
+        }
+
+        /* Parallax effect */
+        .parallax {
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+        /* Glassmorphism effect */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 10px;
+            padding: 2rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Neon glow effect */
+        .neon-glow {
+            box-shadow: 0 0 10px rgba(255, 0, 255, 0.7),
+                        0 0 20px rgba(255, 0, 255, 0.5),
+                        0 0 30px rgba(255, 0, 255, 0.3);
+        }
+
+        /* Event cards */
+        .event-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .event-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 10px;
+            padding: 1.5rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .event-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 0 20px rgba(255, 0, 255, 0.5);
+        }
+
+        /* Gallery */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .gallery-item::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,0.7) 100%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .gallery-item:hover::after {
+            opacity: 1;
+        }
+
+        /* Blog */
+        .blog-posts {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .blog-post {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 10px;
+            padding: 1.5rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .blog-post:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 0 20px rgba(255, 0, 255, 0.5);
+        }
+
+        .blog-post img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 1rem;
+        }
+
+        .blog-post h3 {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .blog-post p {
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .read-more {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            background-color: #ff00ff;
+            color: #ffffff;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .read-more:hover {
+            background-color: #cc00cc;
+        }
+
+        /* Contact form */
+        .contact-form {
+            display: grid;
+            gap: 1rem;
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border: none;
+            border-radius: 5px;
+            background-color: rgba(255, 255, 255, 0.1);
+            color: #ffffff;
+        }
+
+        .contact-form input::placeholder,
+        .contact-form textarea::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .contact-form button {
+            padding: 0.8rem 1.5rem;
+            border: none;
+            border-radius: 5px;
+            background-color: #ff00ff;
+            color: #ffffff;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .contact-form button:hover {
+            background-color: #cc00cc;
+        }
+
+        /* Join Us section */
+        .join-us {
+            text-align: center;
+        }
+
+        .join-us h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .join-us p {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+        }
+
+        .join-button {
+            display: inline-block;
+            padding: 1rem 2rem;
+            font-size: 1.2rem;
+            background-color: #ff00ff;
+            color: #ffffff;
+            border-radius: 50px;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .join-button:hover {
+            background-color: #cc00cc;
+            transform: scale(1.05);
+        }
+
+        /* Footer */
+        footer {
+            background-color: rgba(44, 14, 55, 0.8);
+            backdrop-filter: blur(10px);
+            padding: 2rem 5%;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+
+        .footer-section {
+            flex: 1;
+            margin-right: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 1rem;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section li {
+            margin-bottom: 0.5rem;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 1rem;
+            
+        }
+
+        .neon-icon {
+            font-size: 1.5rem;
+            transition: text-shadow 0.3s ease;
+            
+        }
+
+        .neon-icon:hover {
+            text-shadow: 0 0 10px #ff00ff,
+                         0 0 20px #ff00ff,
+                         0 0 30px #ff00ff;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            margin-top: 2rem;
+            padding-top: 1rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* Responsive design */
+        @media screen and (max-width: 768px) {
+            #menu-toggle {
+                display: block;
+            }
+
+            .nav-links {
+                position: fixed;
+                top: 80px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 80px);
+                background-color: rgba(44, 14, 55, 0.95);
+                flex-direction: column;
+                align-items: center;
+                padding-top: 2rem;
+                transition: left 0.3s ease;
+            }
+
+            .nav-links.active {
+                left: 0;
+            }
+
+            .nav-links li {
+                margin: 1rem 0;
+            }
+
+            .footer-content {
+                flex-direction: column;
+            }
+
+            .footer-section {
+                margin-right: 0;
+                margin-bottom: 2rem;
+            }
+        }
+        
+       /* Neon Themed Registration Form Styles */
+
+#joinButton {
+    padding: 10px 20px;
+    font-size: 18px;
+    cursor: pointer;
+    background-color: #ff00ff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(255, 0, 255, 0.7),
+                0 0 20px rgba(255, 0, 255, 0.5),
+                0 0 30px rgba(255, 0, 255, 0.3);
+    transition: transform 0.3s ease;
+}
+
+#joinButton:hover {
+    transform: scale(1.1);
+}
+
+#popup {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 10000;
+}
+
+#popupContent {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border-radius: 10px;
+    padding: 2rem;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 300px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1),
+                0 0 20px rgba(255, 0, 255, 0.5);
+    color: white;
+}
+
+#closePopup {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+    font-size: 20px;
+    color: #ffffff;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    z-index: 100;
+}
+
+label, input, button {
+    margin-bottom: 10px;
+    z-index: 10000;
+}
+
+input, input[type="submit"] {
+    padding: 10px;
+    border-radius: 5px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border: none;
+    color: white;
+    transition: background-color 0.3s ease;
+}
+
+input::placeholder {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+input[type="submit"] {
+    background-color: #ff00ff;
+    cursor: pointer;
+}
+
+input[type="submit"]:hover {
+    background-color: #cc00cc;
+}
+
+.neon-glow {
+    box-shadow: 0 0 10px rgba(255, 0, 255, 0.7),
+                0 0 20px rgba(255, 0, 255, 0.5),
+                0 0 30px rgba(255, 0, 255, 0.3);
+}
+
+
+
+
+
+/* Top Contributors Section */
+.top-contributors {
+    padding: 4rem 5%;
+    text-align: center;
+}
+
+.top-contributors h2 {
+    font-size: 2.5rem;
+    color: #ff00ff;
+    text-shadow: 0 0 15px rgba(255, 0, 255, 0.7);
+    margin-bottom: 3rem;
+}
+
+/* Contributor Cards Container */
+.contributor-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+/* Individual Contributor Card */
+.contributor-card {
+    display: flex;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border-radius: 15px;
+    padding: 1rem;
+    box-shadow: 0 0 20px rgba(255, 0, 255, 0.3);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    overflow: hidden;
+}
+
+.contributor-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 0 30px rgba(255, 0, 255, 0.6);
+}
+
+.contributor-card img {
+    width: 150px;
+    height: 150px;
+    border-radius: 100px;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+    box-shadow: 0 0 20px rgba(255, 0, 255, 0.3);
+}
+
+.contributor-card:hover img {
+    transform: scale(1.05);
+    box-shadow: 0 0 30px rgba(255, 0, 255, 0.6);
+}
+
+/* Contributor Info */
+.contributor-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-left: 1rem;
+    color: #ffffff;
+}
+
+.contributor-info h3 {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+    text-shadow: 0 0 10px rgba(255, 0, 255, 0.7);
+}
+
+.contributor-info p {
+    font-size: 1rem;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+/* Neon Glow Effect */
+.contributor-card:hover .contributor-info h3,
+.contributor-card:hover .contributor-info p {
+    text-shadow: 0 0 10px rgba(255, 0, 255, 0.7),
+                 0 0 20px rgba(255, 0, 255, 0.5),
+                 0 0 30px rgba(255, 0, 255, 0.3);
+}
+
+/* Responsive Adjustments */
+@media screen and (max-width: 768px) {
+    .contributor-cards {
+        grid-template-columns: 1fr;
+    }
+}
+
+
+/* Section styling */
+#members-section {
+    padding: 4rem 5%;
+    text-align: center;
+    color: #fff;
+}
+
+#members-section h2 {
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+    text-shadow: 0 0 10px #ff00ff;
+}
+
+/* Scroll container for the cards */
+.scroll-container {
+    display: flex;
+    gap: 1.5rem;
+    overflow-x: auto;
+    padding-bottom: 1rem;
+    scroll-behavior: smooth;
+}
+
+.scroll-container::-webkit-scrollbar {
+    height: 10px;
+}
+
+.scroll-container::-webkit-scrollbar-thumb {
+    background: #ff00ff;
+    border-radius: 5px;
+}
+
+.scroll-container::-webkit-scrollbar-track {
+    background: rgba(44, 14, 55, 0.5);
+}
+
+/* Member card styling */
+.member-card {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border-radius: 15px;
+    padding: 1rem;
+    width: 250px;
+    flex: 0 0 auto;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    box-shadow: 0 0 10px rgba(255, 0, 255, 0.5);
+}
+
+.member-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 20px rgba(255, 0, 255, 0.7);
+}
+
+.member-card img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    transition: transform 0.3s ease;
+}
+
+.member-card:hover img {
+    transform: scale(1.1);
+}
+
+.member-name {
+    margin-top: 1rem;
+    font-size: 1.2rem;
+    font-weight: bold;
+    text-shadow: 0 0 5px #ff00ff;
+}
+
+/* Neon glow effect */
+.member-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, rgba(255, 0, 255, 0.5), rgba(0, 0, 0, 0));
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.member-card:hover::before {
+    opacity: 1;
+}
+
+
+
+        
+    </style>
+</head>
+<body>
+    <header>
+        <nav id="main-nav">
+            <div class="logo animate__animated animate__fadeInLeft">Jusc'n Math Club</div>
+            <button id="menu-toggle" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul class="nav-links animate__animated animate__fadeInRight">
+                
+                
+                <li><a href="#join">Join Us</a></li>
+                
+               
+                <li><a href="#events">Events</a></li>
+                
+                <li><a href="#blog">Blog</a></li>
+                
+                <li><a href="#gallery">Gallery</a></li>
+                
+                
+                <li><a href="#about">About Us</a></li>
+                
+                <li><a href="#contact">Contact Us</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        
+        
+        <div id="popup">
+        <div id="popupContent">
+            <span id="closePopup">&times;</span>
+            <h2>Join Our Club</h2>
+            <form id="joinForm">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required>
+
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+
+                <label for="phone">Phone:</label>
+                <input type="tel" id="phone" name="phone" required>
+
+                <input type="submit" value="Submit">
+                
+            </form>
+        </div>
+    </div>
+
+
+
+<section id="join" class="join-us glass-card">
+            <h2>Join Our Mathematical Journey</h2>
+            <p>Become a part of our vibrant community and explore the fascinating world of mathematics together!</p>
+            <a href="https://script.google.com/macros/s/AKfycbxEn-XpWI6vtPB77229rcr7LeH1lqYIXcYuKmWa-0zR-JvhNxn2gzavyvL_mIbr5AZ1/exec" class="join-button neon-glow">Join Now</a>
+        </section>
+
+
+
+        
+
+        <section id="events">
+            <h2>Featured Events</h2>
+            <div class="event-cards">
+                <div class="event-card neon-glow animate__animated animate__fadeInLeft">
+                    <h3>Pi Day Celebration</h3>
+                    <p>Date: March 14, 2025</p>
+                    <p>Join us for a day of pi-themed activities and challenges!</p>
+                </div>
+                <div class="event-card neon-glow animate__animated animate__fadeInRight">
+                    <h3>Math Olympiad</h3>
+                    <p>Date: May 1-3, 2025</p>
+                    <p>Test your skills in our annual Math Olympiad competition.</p>
+                </div>
+            </div>
+        </section>
+
+
+
+<section id="blog">
+            <h2>Latest Blog Posts</h2>
+            <div class="blog-posts">
+              
+                
+                <div class="blog-post">
+                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='200' viewBox='0 0 300 200'%3E%3Crect width='300' height='200' fill='%23555'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='Arial, sans-serif' font-size='18' fill='%23fff'%3EMath in Everyday Life%3C/text%3E%3C/svg%3E" alt="Math in Everyday Life">
+                    <h3>Math in Everyday Life</h3>
+                    <p>Discover how mathematics plays a crucial role in our daily lives, from cooking to architecture.</p>
+                      <a  class="join-button neon-glow" id="joinButton">Join Now</a>
+                </div>
+            </div>
+        </section>
+
+
+
+
+
+        <section id="gallery" class="glass-card">
+            <h2>Gallery</h2>
+            <div class="gallery">
+                <div class="gallery-item">
+                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200' viewBox='0 0 200 200'%3E%3Crect width='200' height='200' fill='%23333'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='Arial, sans-serif' font-size='18' fill='%23fff'%3EMath Club Meeting%3C/text%3E%3C/svg%3E" alt="Math Club Meeting">
+                </div>
+                <div class="gallery-item">
+                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200' viewBox='0 0 200 200'%3E%3Crect width='200' height='200' fill='%23444'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='Arial, sans-serif' font-size='18' fill='%23fff'%3EPi Day Celebration%3C/text%3E%3C/svg%3E" alt="Pi Day Celebration">
+                </div>
+                <div class="gallery-item">
+                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200' viewBox='0 0 200 200'%3E%3Crect width='200' height='200' fill='%23555'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='Arial, sans-serif' font-size='18' fill='%23fff'%3EMath Olympiad%3C/text%3E%3C/svg%3E" alt="Math Olympiad">
+                </div>
+                <div class="gallery-item">
+                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200' viewBox='0 0 200 200'%3E%3Crect width='200' height='200' fill='%23666'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='Arial, sans-serif' font-size='18' fill='%23fff'%3EGuest Lecture%3C/text%3E%3C/svg%3E" alt="Guest Lecture">
+                </div>
+            </div>
+        </section>
+        
+        
+        
+        
+        <section id="members-section">
+    <h2>Meet Our Team</h2>
+    <div class="scroll-container">
+        <div class="member-card">
+            <img src="member1.jpg" alt="Member 1">
+            <p class="member-name">Member 1</p>
+        </div>
+        <div class="member-card">
+            <img src="member2.jpg" alt="Member 2">
+            <p class="member-name">Member 2</p>
+        </div>
+        <div class="member-card">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQlmMiK_EyFPSO1NteHccB-L50mCzIia86zrw&s" alt="Member 3">
+            <p class="member-name">Member 3</p>
+        </div>
+        <div class="member-card">
+            <img src="https://i.imgur.com/MDr3Hhh.jpeg" alt="Member 4">
+            <p class="member-name">Member 4</p>
+        </div>
+        <!-- Add more members as needed -->
+    </div>
+</section>
+
+        
+        
+        
+        
+        
+        <section class="top-contributors">
+    <h2>Top Contributors</h2>
+    <div class="contributor-cards">
+        <div class="contributor-card">
+            <img src="https://i.imgur.com/MDr3Hhh.jpeg" alt="Contributor 1">
+            <div class="contributor-info">
+                <h3>John Doe</h3>
+                <p>Lead Developer</p>
+            </div>
+        </div>
+        <div class="contributor-card">
+            <img src="contributor2.jpg" alt="Contributor 2">
+            <div class="contributor-info">
+                <h3>Jane Smith</h3>
+                <p>UI/UX Designer</p>
+            </div>
+        </div>
+        <div class="contributor-card">
+            <img src="contributor3.jpg" alt="Contributor 3">
+            <div class="contributor-info">
+                <h3>Michael Johnson</h3>
+                <p>Backend Developer</p>
+            </div>
+        </div>
+        <div class="contributor-card">
+            <img src="contributor4.jpg" alt="Contributor 4">
+            <div class="contributor-info">
+                <h3>Emily Williams</h3>
+                <p>Project Manager</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+        
+        
+        
+        
+
+        
+
+
+
+<section id="about" class="glass-card">
+            <h2>About Us</h2>
+            <p>The College Math Club is a community of passionate mathematicians and enthusiasts. Our goal is to foster a love for mathematics and provide a platform for students to explore, learn, and grow in their mathematical journey.</p>
+        </section>
+
+        
+
+        <section id="contact" class="glass-card">
+            <h2>Contact Us</h2>
+            <form class="contact-form">
+                <input type="text" placeholder="Your Name" required>
+                <input type="email" placeholder="Your Email" required>
+                <input type="text" placeholder="Subject" required>
+                <textarea placeholder="Your Message" rows="5" required></textarea>
+                <button type="submit" class="neon-glow">Send Message</button>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">About Us</a></li>
+                    <li><a href="#events">Events</a></li>
+                    <li><a href="#gallery">Gallery</a></li>
+                    <li><a href="#blog">Blog</a></li>
+                    <li><a href="#join">Join Us</a></li>
+                    <li><a href="#contact">Contact Us</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Contact Info</h3>
+                <p>Email: info@collegemathclub.com</p>
+                <p>Phone: (123) 456-7890</p>
+            </div>
+            <div class="footer-section">
+                <h3>Follow Us</h3>
+                <div class="social-icons">
+                    <a href="#" class="neon-icon" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                    <a href="https://youtube" class="neon-icon" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="neon-icon" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="neon-icon" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                    
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 College Math Club. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="https://kit.fontawesome.com/your-fontawesome-kit.js" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/rellax@1.12.1/rellax.min.js"></script>
+    <script>
+        // Parallax effect
+        document.addEventListener('DOMContentLoaded', function() {
+            const rellax = new Rellax('.parallax');
+        });
+
+        // Mobile menu toggle
+        const menuToggle = document.getElementById('menu-toggle');
+        const navLinks = document.querySelector('.nav-links');
+
+        menuToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            menuToggle.classList.toggle('open');
+        });
+
+        // Header background on scroll
+        const header = document.querySelector('header');
+        const scrollThreshold = 100;
+
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > scrollThreshold) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Lazy loading for images
+        if ('loading' in HTMLImageElement.prototype) {
+            const images = document.querySelectorAll('img[loading="lazy"]');
+            images.forEach(img => {
+                img.src = img.dataset.src;
+            });
+        } else {
+            // Fallback for browsers that don't support lazy loading
+            const script = document.createElement('script');
+            script.src = 'https://cdnjs.cloudflare.com/ajax/libs/lazysizes/5.3.2/lazysizes.min.js';
+            document.body.appendChild(script);
+        }
+
+        // Scroll animations
+        const sections = document.querySelectorAll('section');
+        const navItems = document.querySelectorAll('.nav-links a');
+
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.3
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    updateActiveNavItem(entry.target.id);
+                }
+            });
+        }, observerOptions);
+
+        sections.forEach(section => {
+            observer.observe(section);
+        });
+
+        function updateActiveNavItem(sectionId) {
+            navItems.forEach(item => {
+                item.classList.remove('active');
+                if (item.getAttribute('href') === `#${sectionId}`) {
+                    item.classList.add('active');
+                }
+            });
+        }
+
+        // Form submission (prevent default for demo)
+        const contactForm = document.querySelector('.contact-form');
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            alert('Thank you for your message! We will get back to you soon.');
+            contactForm.reset();
+        });
+        
+        
+        
+        const joinButton = document.getElementById('joinButton');
+        const popup = document.getElementById('popup');
+        const closePopup = document.getElementById('closePopup');
+        const joinForm = document.getElementById('joinForm');
+
+        joinButton.addEventListener('click', () => {
+            popup.style.display = 'block';
+        });
+
+        closePopup.addEventListener('click', () => {
+            popup.style.display = 'none';
+        });
+
+        popup.addEventListener('click', (e) => {
+            if (e.target === popup) {
+                popup.style.display = 'none';
+            }
+        });
+
+        
+    </script>
+</body>
+</html>

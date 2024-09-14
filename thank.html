@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Successful</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+
+        :root {
+            --primary-color: #8A2BE2;
+            --secondary-color: #4B0082;
+            --accent-color: #9370DB;
+            --text-color: #E6E6FA;
+            --background-color: #1E0933;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: var(--background-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow-x: hidden;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 600px;
+            padding: 40px;
+            text-align: center;
+        }
+
+        .thank-you-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+            transform: translateY(0);
+            transition: transform 0.3s ease;
+        }
+
+        .thank-you-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .icon {
+            font-size: 5em;
+            color: var(--accent-color);
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            color: var(--primary-color);
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+
+        p {
+            font-size: 1.2em;
+            margin-bottom: 30px;
+        }
+
+        .btn {
+            background: var(--primary-color);
+            color: var(--text-color);
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1em;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn:hover {
+            background: var(--secondary-color);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+
+        .floating-icon {
+            position: absolute;
+            font-size: 3em;
+            color: var(--accent-color);
+            opacity: 0.2;
+            animation: float 4s ease-in-out infinite;
+        }
+
+        .icon1 { top: 10%; left: 5%; animation-delay: 0s; }
+        .icon2 { top: 60%; right: 5%; animation-delay: 1s; }
+        .icon3 { bottom: 10%; left: 50%; animation-delay: 2s; }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px;
+            }
+            .thank-you-card {
+                padding: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="thank-you-card">
+            <i class="fas fa-check-circle icon"></i>
+            <h1>Thank You!</h1>
+            <p>Your registration has been successfully completed. Welcome to our community!</p>
+            
+        </div>
+    </div>
+
+    <i class="fas fa-star floating-icon icon1"></i>
+    <i class="fas fa-heart floating-icon icon2"></i>
+    <i class="fas fa-thumbs-up floating-icon icon3"></i>
+</body>
+</html>
